@@ -2,7 +2,6 @@ package ua.yakubovskiy;
 
 import ua.yakubovskiy.annotation.PropertyConfiguration;
 import ua.yakubovskiy.annotation.PropertyElement;
-import ua.yakubovskiy.exception.PropertyLoadingException;
 import java.io.IOException;
 import java.lang.reflect.Field;
 import java.time.Instant;
@@ -45,7 +44,7 @@ public class LoadProperties {
         }else {
             valueName = properties.getProperty(field.getName());
         }
-        if(valueName == null) throw new PropertyLoadingException("\"valueName\" must not be empty");
+        if(valueName == null) throw new IllegalArgumentException("\"valueName\" must not be empty");
 
         String valueFormat = field.getAnnotation(PropertyElement.class).format();
         Class<?> fieldType = field.getType();
@@ -80,19 +79,19 @@ public class LoadProperties {
                     throw new DateTimeParseException("Unable to cast value to date", valueName.trim(), 0);
                 }
             }else {
-                throw new PropertyLoadingException("Date format not specified");
+                throw new IllegalArgumentException("Date format not specified");
             }
         }else {
-            throw new PropertyLoadingException("Type not supported");
+            throw new ClassCastException("Type not supported");
         }
         return result;
     }
 
     private static void checkIfAnnotated(Object object, Class<?> cls) {
-        if (Objects.isNull(object)) throw new PropertyLoadingException("The object is null");
+        if (Objects.isNull(object)) throw new IllegalArgumentException("The object is null");
 
         if (!cls.isAnnotationPresent(PropertyConfiguration.class)) {
-            throw new PropertyLoadingException("The class "
+            throw new IllegalArgumentException("The class "
                     + cls.getSimpleName()
                     + " is not annotated with PropertyConfiguration");
         }

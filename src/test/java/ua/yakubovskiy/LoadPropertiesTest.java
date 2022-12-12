@@ -19,14 +19,14 @@ class LoadPropertiesTest {
 
     @Test
     void whenObjectIsNull(){
-        assertThrows(PropertyLoadingException.class, () ->
+        assertThrows(IllegalArgumentException.class, () ->
                 LoadProperties.loadFromProperties(null, Employee.class,
                         "prop.properties"));
     }
 
     @Test
     void whenValueNameIsEmpty(){
-        assertThrows(PropertyLoadingException.class, () ->
+        assertThrows(IllegalArgumentException.class, () ->
                 LoadProperties.loadFromProperties(employee, Employee.class,
                         "propTestWhenValueNameIsEmpty.properties"));
     }
