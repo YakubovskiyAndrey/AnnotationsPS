@@ -7,27 +7,16 @@ import java.time.Instant;
 @PropertyConfiguration
 public class Employee {
 
-    @PropertyElement(name = "employeeName")
+    @PropertyElement
     private String name;
 
-    @PropertyElement(name = "employeeSalary")
+    @PropertyElement(name = "numberProperty")
     private int salary;
 
+    @PropertyElement(name = "timeProperty", format = "dd.MM.yyyy HH:mm")
     private Instant employmentDate;
 
     public Employee() {
-    }
-
-    public void setName(String name) {
-        this.name = name;
-    }
-
-    public void setSalary(int salary) {
-        this.salary = salary;
-    }
-
-    public void setEmploymentDate(Instant employmentDate) {
-        this.employmentDate = employmentDate;
     }
 
     @Override
