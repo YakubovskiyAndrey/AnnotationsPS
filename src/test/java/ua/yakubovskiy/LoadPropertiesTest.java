@@ -3,7 +3,6 @@ package ua.yakubovskiy;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import ua.yakubovskiy.entity.Employee;
-import ua.yakubovskiy.exception.PropertyLoadingException;
 import java.time.format.DateTimeParseException;
 import static org.junit.jupiter.api.Assertions.assertThrows;
 import static org.junit.jupiter.api.Assertions.assertEquals;
