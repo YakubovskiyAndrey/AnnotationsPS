@@ -49,7 +49,7 @@ public class LoadProperties {
         String valueFormat = field.getAnnotation(PropertyElement.class).format();
         Class<?> fieldType = field.getType();
 
-        if(fieldType == Integer.TYPE){
+        if(fieldType.isAssignableFrom(Integer.TYPE)){
             try{
                 result = Integer.parseInt(valueName.trim());
             } catch (NumberFormatException ex){
